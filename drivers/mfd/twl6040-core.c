@@ -779,6 +779,15 @@ static int __devinit twl6040_probe(struct i2c_client *client,
 		children++;
 	}
 
+	if (pdata->gpo) {
+		cell = &twl6040->cells[children];
+		cell->name = "twl6040-gpo";
+
+		cell->platform_data = pdata->gpo;
+		cell->pdata_size = sizeof(*pdata->gpo);
+		children++;
+	}
+
 	if (pdata->platform_init) {
 		ret = pdata->platform_init(twl6040);
 		if (ret < 0) {

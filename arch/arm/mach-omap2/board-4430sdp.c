@@ -765,9 +765,15 @@ static int twl6040_platform_exit(struct twl6040 *twl6040)
 	return 0;
 }
 
+static struct twl6040_gpo_data twl6040_gpo = {
+	.nr_gpo = TWL6040_GPO_MAX,
+	.gpio_base = -1,
+};
+
 static struct twl6040_platform_data twl6040_data = {
 	.codec		= &twl6040_codec,
 	.vibra		= &twl6040_vibra,
+	.gpo        	= &twl6040_gpo,
 	.audpwron_gpio	= 127,
 	.platform_init	= twl6040_platform_init,
 	.platform_exit	= twl6040_platform_exit,

@@ -193,6 +193,8 @@
 #define TWL6040_SYSCLK_SEL_LPPLL	0
 #define TWL6040_SYSCLK_SEL_HPPLL	1
 
+#define TWL6040_GPO_MAX    		3
+
 struct twl6040_codec_data {
 	u16 hs_left_step;
 	u16 hs_right_step;
@@ -220,6 +222,11 @@ struct twl6040_vibra_data {
 
 struct twl6040;
 
+struct twl6040_gpo_data {
+	int nr_gpo;
+	int gpio_base;
+};
+
 struct twl6040_platform_data {
 	int audpwron_gpio;	/* audio power-on gpio */
 	unsigned int irq_base;
@@ -230,6 +237,7 @@ struct twl6040_platform_data {
 
 	struct twl6040_codec_data *codec;
 	struct twl6040_vibra_data *vibra;
+	struct twl6040_gpo_data *gpo;
 };
 
 struct regmap;

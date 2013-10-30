@@ -23,6 +23,9 @@
 #include <linux/pm_runtime.h>
 #include <linux/platform_data/omap-mcpdm.h>
 #include <linux/platform_data/omap-dmic.h>
+
+#include <media/omap4iss.h>
+
 #include <sound/omap-abe.h>
 #include <media/omap3isp.h>
 
@@ -301,6 +304,36 @@ int omap3_init_camera(struct isp_platform_data *pdata)
 }
 
 #endif
+
+int omap4_init_camera(struct iss_platform_data *pdata, struct omap_board_data *bdata)
+{
+        struct omap_device *od;
+        struct omap_hwmod *oh;
+        struct iss_platform_data *omap4iss_pdata;
+        const char *oh_name = "iss";
+        const char *name = "omap4iss";
+
+        oh = omap_hwmod_lookup(oh_name);
+        if (!oh) {
+                pr_err("Could not look up %s\n", oh_name);
+                return -ENODEV;
+        }
+
+        omap4iss_pdata = pdata;
+
+        od = omap_device_build(name, -1, oh, omap4iss_pdata,
+                        sizeof(struct iss_platform_data), NULL, 0, 0);
+
+        if (IS_ERR(od)) {
+                WARN(1, "Can't build omap_device for %s:%s.\n",
+                                                name, oh->name);
+                return PTR_ERR(od);
+        }
+
+        oh->mux = omap_hwmod_mux_init(bdata->pads, bdata->pads_cnt);
+
+        return 0;
+}
 
 static inline void omap_init_camera(void)
 {

@@ -138,4 +138,46 @@ struct v4l2_subdev_frame_interval_enum {
 #define VIDIOC_SUBDEV_G_CROP	_IOWR('V', 59, struct v4l2_subdev_crop)
 #define VIDIOC_SUBDEV_S_CROP	_IOWR('V', 60, struct v4l2_subdev_crop)
 
+/**
+ * struct v4l2_subdev_selection - selection info
+ *
+ * @which: either V4L2_SUBDEV_FORMAT_ACTIVE or V4L2_SUBDEV_FORMAT_TRY
+ * @pad: pad number, as reported by the media API
+ * @target: selection target, used to choose one of possible rectangles
+ * @flags: constraint flags
+ * @r: coordinates of the selection window
+ * @reserved: for future use, set to zero for now
+ *
+ * Hardware may use multiple helper windows to process a video stream.
+ * The structure is used to exchange this selection areas between
+ * an application and a driver.
+ */
+struct v4l2_subdev_selection {
+    __u32 which;
+    __u32 pad;
+    __u32 target;
+    __u32 flags;
+    struct v4l2_rect r;
+    __u32 reserved[8];
+};
+
+#define VIDIOC_SUBDEV_G_FMT    _IOWR('V',  4, struct v4l2_subdev_format)
+#define VIDIOC_SUBDEV_S_FMT    _IOWR('V',  5, struct v4l2_subdev_format)
+#define VIDIOC_SUBDEV_G_FRAME_INTERVAL \
+            _IOWR('V', 21, struct v4l2_subdev_frame_interval)
+#define VIDIOC_SUBDEV_S_FRAME_INTERVAL \
+            _IOWR('V', 22, struct v4l2_subdev_frame_interval)
+#define VIDIOC_SUBDEV_ENUM_MBUS_CODE \
+            _IOWR('V',  2, struct v4l2_subdev_mbus_code_enum)
+#define VIDIOC_SUBDEV_ENUM_FRAME_SIZE \
+            _IOWR('V', 74, struct v4l2_subdev_frame_size_enum)
+#define VIDIOC_SUBDEV_ENUM_FRAME_INTERVAL \
+            _IOWR('V', 75, struct v4l2_subdev_frame_interval_enum)
+#define VIDIOC_SUBDEV_G_CROP    _IOWR('V', 59, struct v4l2_subdev_crop)
+#define VIDIOC_SUBDEV_S_CROP    _IOWR('V', 60, struct v4l2_subdev_crop)
+#define VIDIOC_SUBDEV_G_SELECTION \
+    _IOWR('V', 61, struct v4l2_subdev_selection)
+#define VIDIOC_SUBDEV_S_SELECTION \
+    _IOWR('V', 62, struct v4l2_subdev_selection)
+
 #endif
