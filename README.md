@@ -13,12 +13,12 @@ Linux kernel version 3.4 for Android JB 4.2.X from omappedia with omap4_iss patc
 =====
 Where does it come from?
 =====
-Kernel sources: git://git.omapzoom.org/kernel/omap.git kernel/android-3.4
-commit hash checkout: 7a3725d9ffcf450b12c89e139735284eb3c19e34
-
-omap4_iss: https://gitorious.org/omap4-v4l2-camera
-branch: for4AI.1.5
-kernel version: 3.0.18
+Kernel sources: git://git.omapzoom.org/kernel/omap.git kernel/android-3.4<p>
+commit hash checkout: 7a3725d9ffcf450b12c89e139735284eb3c19e34<p>
+<p>
+omap4_iss: https://gitorious.org/omap4-v4l2-camera<p>
+branch: for4AI.1.5<p>
+kernel version: 3.0.18<p>
 
 =====
 Does it works?
