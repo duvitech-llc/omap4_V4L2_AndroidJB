@@ -29,3 +29,12 @@ As far as I've tested it, yes
 Where does it works?
 ====
 Blaze and Blaze_tablet2 with OV5650 image sensor
+
+
+====
+Branches
+====
+master: tracks omapzoom
+omappedia_checkout: commit 7a3725d9ffcf450b12c89e139735284eb3c19e34 checckout
+omap4iss: patch series applied
+omap4iss_DEBUG: debug branch
